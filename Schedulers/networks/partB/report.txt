@@ -1,0 +1,27 @@
+1. How is your implementation of data sequencing and retransmission different from traditional TCP? 
+
+Ans: Since my implementation of TCP is based on the UDP protocol, like UDP and unlike traditional TCP, it is connectionless
+
+     Traditional TCP has mechanisms to account for flow control, but my implementation does not account for flow control and has no mechanisms to deal with it
+     
+     Similarly, unlike traditional TCP, my implementation has no mechanisms to account for congestion.
+
+     Traditional TCP has mechanisms to account for erroneous and duplicate packets, which my implementation does not check for.
+
+     Traditional TCP will wait to recieve an ACK bit from the receiver before sending the next chunk of data but my implementation does
+     not wait for an ack bit to be recieved and rather retransmits the chunks for which no ACK bit was recieved, after transmitting
+     all the data chunks.
+
+     Traditional TCP does not inform the reciever how many data chunks it will be sending, but in my implementation, the sender 
+     informs the reciever about the number of data chunks it will be sending. 
+
+
+
+2. How can you extend your implementation to account for flow control?
+
+Ans: Flow control involves implementing mechanisms to avoid having the sender send data too fast for the TCP receiver to receive and
+     process it reliably. In order to account for flow control in my implementation, I can set a threshold for the number of packets that
+     can be sent to the sender (server) without recieving an ack bit. If the number of packets exceed the threshold, I can wait and stop transmission
+     until enough ack bits are recieved such that the number of packets with no ack bit is less than the threshold.
+     In the case of the receiver (client), I can set a range for packet transmission such that whenever a packet is recieved, if the 
+     packet is out of that range, it gets discarded since it is either a duplicate, too old, or out of order.

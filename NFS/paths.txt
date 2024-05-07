@@ -1,0 +1,5 @@
+/hello
+/temp.c
+/myfile
+/dir1
+/dir1/hello
